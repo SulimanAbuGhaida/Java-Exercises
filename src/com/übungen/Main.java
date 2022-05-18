@@ -39,6 +39,18 @@ public class Main {
                 case 2:
                     uni.allStudent();
                     break;
+                case 3:
+                    System.out.println("Enter the name of Student");
+                    String d = r.next();
+                    uni.searchStudent(d);
+                case 4:
+                    System.out.println("Enter the name of Student");
+                    String e = r.next();
+                    uni.editStudent(e);
+                case 5:
+                    System.out.println("Enter the name of Student");
+                    String w = r.next();
+                    uni.deleteStudent(w);
             }
         }
     }
