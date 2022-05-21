@@ -4,9 +4,9 @@ public class Student {
 
     private String name ="";
     private String nachname ="";
-    private String studentNr ="";
+    private int studentNr ;
 
-    public Student(String name, String nachname, String studentNr) {
+    public Student(String name, String nachname, int studentNr) {
         this.name = name;
         this.nachname = nachname;
         this.studentNr = studentNr;
@@ -28,11 +28,11 @@ public class Student {
         this.nachname = nachname;
     }
 
-    public String getStudentNr() {
+    public int getStudentNr() {
         return studentNr;
     }
 
-    public void setStudentNr(String studentNr) {
+    public void setStudentNr(int studentNr) {
         this.studentNr = studentNr;
     }
 }

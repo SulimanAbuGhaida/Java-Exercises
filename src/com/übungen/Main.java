@@ -1,5 +1,7 @@
 package com.übungen;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Scanner;
 
 public class Main {
@@ -10,7 +12,7 @@ public class Main {
 
         University uni = new University("DHBW", 1000);
 
-        int operation = 0;
+        var operation = 0;
         Scanner r = new Scanner(System.in);
 
         while (operation != 6) {
@@ -22,36 +24,60 @@ public class Main {
             System.out.println("4- edit Student info");
             System.out.println("5- delete Student");
 
-            operation = r.nextInt();
 
-            switch (operation) {
-                case 1:
-                    System.out.println("Enter the name of Student");
-                    String a = r.next();
-                    System.out.println("Enter the Surname of Student");
-                    String b = r.next();
-                    System.out.println("Enter the Student Number");
-                    String c = r.next();
+            try {
+                operation = r.nextInt();
+                while (operation != 1 && operation != 2 && operation != 3 && operation != 4 && operation != 5 && operation != 6) {
+                    System.out.println(" please enter only number from 1 to 6");
+                    operation = r.nextInt();
+                }
 
-                    Student s = new Student(a, b, c);
-                    uni.addStudent(s);
-                    break;
-                case 2:
-                    uni.allStudent();
-                    break;
-                case 3:
-                    System.out.println("Enter the name of Student");
-                    String d = r.next();
-                    uni.searchStudent(d);
-                case 4:
-                    System.out.println("Enter the name of Student");
-                    String e = r.next();
-                    uni.editStudent(e);
-                case 5:
-                    System.out.println("Enter the name of Student");
-                    String w = r.next();
-                    uni.deleteStudent(w);
+
+                try {
+                    switch (operation) {
+
+
+                        case 1:
+                            System.out.println("Enter the name of Student");
+                            String a = r.next();
+                            System.out.println("Enter the Surname of Student");
+                            String b = r.next();
+                            System.out.println("Enter the Student Number");
+                            int c = r.nextInt();
+
+                            Student s = new Student(a, b, c);
+                            uni.addStudent(s);
+                            break;
+                        case 2:
+                            uni.allStudent();
+                            break;
+                        case 3:
+                            System.out.println("Enter the name of Student");
+                            String d = r.nextLine();
+                            uni.searchStudent(d);
+                        case 4:
+                            System.out.println("Enter the name of Student");
+                            String e = r.nextLine();
+                            uni.editStudent(e);
+                        case 5:
+                            System.out.println("Enter the name of Student");
+                            String w = r.next();
+                            uni.deleteStudent(w);
+                        default:
+                            System.out.println("put number from 1 to 5");
+                    }
+                } catch (Exception e) {
+                    System.out.println("put number from 1 to 5");
+                    r = null;
+                }
+            } catch (Exception e) {
+                System.out.println("please enter only numbers");
+                operation = 0;
+                r = new Scanner(System.in);
+                System.out.println("--------  ________   _________ ---------");
             }
         }
+
+
     }
 }
