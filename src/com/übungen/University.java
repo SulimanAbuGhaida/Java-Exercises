@@ -1,6 +1,5 @@
 package com.übungen;
 
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,14 +61,20 @@ public class University {
             }
         }return ("We found it");
     }
-    public String editStudent(String n){
+    public void editStudent(String n){
+
+        String[] first = n.split(",",2 );
+        String actuellName = first[0];
+        String newName = first[1];
+
         for(int i=0; i<studentNumber; i++){
-            if (myStudent.get(i).getName().equals(n) ){
-                myStudent.get(i).setName(n);
+            if (myStudent.get(i).getName().equals(actuellName) ){
+
+                myStudent.get(i).setName(newName);
                 System.out.println("We have this name and changed to " + myStudent.get(i).getName());
                 break;
             }
-        }return ("We found it");
+        }
     }
 
     public String deleteStudent(String n){
