@@ -5,15 +5,21 @@ import java.util.List;
 
 public class University {
 
-    private String name="";
-    private String adress ="";
+    private String name = "";
+    private String adress = "";
     private List<Student> myStudent;
-    private int  studentNumber=0;
+    private int studentNumber = 4;
 
 
-    public University(String name, int s){
-        this.name =name;
-        myStudent = new ArrayList<>(s);
+    public University(String name, int students) {
+        this.name = name;
+        myStudent = new ArrayList<>(students);
+        Student s1 = new Student(1, "Mousa", "Abu Ghaida");
+        Student s2 = new Student(2, "Suliman", "Abu Ghaida");
+        Student s3 = new Student(3, "Mohammad", "Abu Ghaida");
+        myStudent.add(s1);
+        myStudent.add(s2);
+        myStudent.add(s3);
     }
 
     public String getName() {
@@ -48,27 +54,33 @@ public class University {
 
         this.studentNumber = studentNumber;
     }
-    void addStudent(Student s){
+
+    void addStudent(Student s) {
         myStudent.add(s);
-        studentNumber +=1;
+        studentNumber += 1;
     }
 
-    public String searchStudent(String n){
-        for(int i=0; i<studentNumber; i++){
-            if (myStudent.get(i).getName().equals(n) ){
-                System.out.println("We have this name. Her/His Number is: " + myStudent.get(i).getStudentNr());
+    public void searchStudent(String searchedStudent) {
+        String resultFound = "";
+        for (int i = 0; i < myStudent.size(); i++) {
+            if (myStudent.get(i).getName().equals(searchedStudent)) {
+                resultFound = "We have this name. Her/His Number is: " + myStudent.get(i).getStudentNr();
                 break;
+            } else {
+                resultFound = "We didn't find the Student " + searchedStudent + ". Please try another name";
             }
-        }return ("We found it");
+        }
+        System.out.println(resultFound);
     }
-    public void editStudent(String n){
 
-        String[] first = n.split(",",2 );
+    public void editStudent(String n) {
+
+        String[] first = n.split(",", 2);
         String actuellName = first[0];
         String newName = first[1];
 
-        for(int i=0; i<studentNumber; i++){
-            if (myStudent.get(i).getName().equals(actuellName) ){
+        for (int i = 0; i < studentNumber; i++) {
+            if (myStudent.get(i).getName().equals(actuellName)) {
 
                 myStudent.get(i).setName(newName);
                 System.out.println("We have this name and changed to " + myStudent.get(i).getName());
@@ -77,20 +89,34 @@ public class University {
         }
     }
 
-    public String deleteStudent(String n){
-        for(int i=0; i<studentNumber; i++){
-            if (myStudent.get(i).getName().equals(n) ){
+    public void deleteStudent(String deletedStudent) {
+        for (int i = 0; i < studentNumber; i++) {
+            if (myStudent.get(i).getName().equals(deletedStudent)) {
                 myStudent.remove(i);
-                System.out.println("We have this name already. input another name ");
+                System.out.println("the name " + deletedStudent + " ist deleted :) ");
                 break;
-            }
-        }return ("We found it");
-    }
+            }else{
+                System.out.println("The name " + deletedStudent + " doesn#t existed. input an existed name please!");
 
-    public void allStudent(){
-        for (int i=0; i<studentNumber; i++){
-            Student s = myStudent.get(i);
-            System.out.println(s.getName() + " "+ s.getNachname() +" "+ s.getStudentNr());
+            }
         }
     }
+
+    public String allStudent() {
+        for (int i = 0; i < myStudent.size(); i++) {
+            Student s = myStudent.get(i);
+            System.out.println(s.getStudentNr() + " " + s.getName() + " " + s.getNachname());
+        }
+        System.out.println("-----------------------------------");
+        return "";
+
+    }
+ /* public List<Student> allStudent() {
+      List<Student> allStudent = null;
+      for (int i = 0; i < myStudent.size(); i++) {
+          allStudent.add(myStudent.get(i));
+
+      }
+      return allStudent;
+  }*/
 }
